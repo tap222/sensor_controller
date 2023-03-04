@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_my_sensor_module_temperature,Access Temperature model,my_sensor_module.model_my_sensor_module_temperature,base.group_user,1,0,0,0
+access_my_sensor_module_humidity,Access Humidity model,my_sensor_module.model_my_sensor_module_humidity,base.group_user,1,0,0,0
+access_my_sensor_module_sensor_controller,Access Sensor Controller model,my_sensor_module.model_my_sensor_module_sensor_controller,base.group_user,1,1,1,0
+access_my_sensor_module_sensor,Access Sensor model,my_sensor_module.model_my_sensor_module_sensor,base.group_user,1,0,0,0
+access_my_sensor_module_sensor_controller_status,Access Sensor Controller Status,my_sensor_module.model_my_sensor_module_sensor_controller,base.group_user,1,0,0,0
