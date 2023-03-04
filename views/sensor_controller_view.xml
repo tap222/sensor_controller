@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Action definition for the sensor controller list view -->
+        <record id="action_sensor_controller" model="ir.actions.act_window">
+            <field name="name">Sensor Controllers</field>
+            <field name="res_model">my_sensor_module.sensor_controller</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to add a new sensor controller
+                </p>
+            </field>
+        </record>
+
+        <!-- Menu definition for the sensor controller module -->
+        <menuitem id="menu_sensor_controller" name="Sensor Controllers"/>
+        <menuitem id="menu_sensor_controller_main" name="Sensor Controllers" parent="menu_sensor_controller" action="action_sensor_controller" />
+
+        <!-- View definitions for the sensor controller model -->
+        <record id="view_sensor_controller_form" model="ir.ui.view">
+            <field name="name">my_sensor_module.controller.form</field>
+            <field name="model">my_sensor_module.sensor_controller</field>
+            <field name="arch" type="xml">
+                <form string="Sensor Controller">
+                    <sheet>
+                        <group>
+                            <field name="sensor_name" required="1"/>
+                            <field name="sensor_address" required="1"/>
+                            <field name="sensor_port" required="1"/>
+                        </group>
+                        <header>
+                            <button name="test_connection" type="object" string="Test Connection"
+                                    class="btn-primary" model="my_sensor_module.sensor_controller"/>
+                            <field name="status" class="oe_inline" widget="statusbar"
+                                   statusbar_visible="connected,not_connected"
+                                   statusbar_colors="{'connected': 'green', 'not_connected': 'red'}"/>
+                        </header>
+                    </sheet>
+                    <field name="status" invisible="1"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_sensor_controller_tree" model="ir.ui.view">
+            <field name="name">my_sensor_module.controller.tree</field>
+            <field name="model">my_sensor_module.sensor_controller</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Sensor Controller">
+                    <field name="sensor_name"/>
+                    <field name="sensor_address"/>
+                    <field name="sensor_port"/>
+<!--                    <field name="status" attrs="{'invisible': [('status','=','')]}" class="oe_inline bg-danger text-white"-->
+<!--                            states="{'connected': [('class', 'oe_inline bg-success text-white')]}"/>-->
+                    <field name="status" class="oe_inline" widget="statusbar"
+                           options='{"not_connected": {"type": "danger", "string": "Not Connected", "attrs": {"class": "not-connected-tag", "state": "not-connected"}},
+                                     "connected": {"type": "success", "string": "Connected", "attrs": {"class": "connected-tag", "state": "connected"}}}'
+                            style="font-weight: bold; padding: 3px; text-align: center; color: white;">
+                    </field>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_sensor_data_graph" model="ir.ui.view">
+            <field name="name">my_sensor_module.data.graph</field>
+            <field name="model">my_sensor_module.sensor_controller</field>
+            <field name="type">graph</field>
+            <field name="arch" type="xml">
+                <graph string="Sensor Controller">
+                    <field name="temperature" type="float" string="Temperature" color="#FF5733"/>
+                    <field name="humidity" type="float" string="Humidity" color="#33A6FF"/>
+                    <field name="date" type="datetime" string="Date" interval="day"/>
+                </graph>
+                <axis name="y" position="left" max="[[ max(data['temperature']), max(data['humidity']) ]]" />
+            </field>
+        </record>
+
+    </data>
+</odoo>
