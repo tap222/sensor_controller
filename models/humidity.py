@@ -8,12 +8,12 @@ class Humidity(models.Model):
     humidity = fields.Float(string='Humidity', required=True)
     created_date = fields.Datetime(string='Created Date', default=fields.Datetime.now())
     updated_date = fields.Datetime(string='Updated Date', default=fields.Datetime.now())
-    sensor_status = fields.Selection([('OK', 'OK'), ('Warning', 'Warning'), ('Error', 'Error')], default='OK')
+    #sensor_status = fields.Selection([('OK', 'OK'), ('Warning', 'Warning'), ('Error', 'Error')], default='OK')
 
-    # @api.model
-    # def create(self, vals):
-    #     if not vals.get('date'):
-    #         vals['date'] = fields.Datetime.now()
-    #     return super(Humidity, self).create(vals)
+    @api.model
+    def create(self, vals):
+        if not vals.get('date'):
+            vals['date'] = fields.Datetime.now()
+        return super(Humidity, self).create(vals)
 
 
