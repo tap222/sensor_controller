@@ -1,0 +1,20 @@
+.bg-danger {
+    background-color: #dc3545 !important;
+}
+
+.bg-success {
+    background-color: #28a745 !important;
+}
+
+.text-white {
+    color: #fff !important;
+}
+.not-connected-tag[state="not-connected"] {
+   background-color: #dc3545 !important;
+   border-color: #dc3545 !important;
+}
+
+.connected-tag[state="connected"] {
+   background-color: #28a745 !important;
+   border-color: #28a745 !important;
+}
