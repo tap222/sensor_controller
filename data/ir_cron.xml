@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="ir_cron_update_sensor_data" model="ir.cron">
+            <field name="name">Update Sensor Data</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">5</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="doall"  >0</field>
+            <field name="model_id" ref="model_my_sensor_module_sensor_controller"/>
+            <field name="code">model.update_sensor_data()</field>
+            <field name="active" eval="True"/>
+            <field name="priority">1</field>
+            <field name="nextcall" eval="(DateTime.now() + relativedelta(minutes=+5)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        </record>
+    </data>
+</odoo>
